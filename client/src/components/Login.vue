@@ -62,6 +62,7 @@ export default {
           toRegister.username = ''
           toRegister.password = ''
           console.log('masuk', response.data);
+          this.$store.commit('toTrue')
           this.$router.push('/lists')
         }
       })

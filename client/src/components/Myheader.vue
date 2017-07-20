@@ -122,9 +122,9 @@
         </div>
       </div>
 
-      <div class="panel-block">
+      <div class="panel-block" @keyup.enter="tesmic">
         <p class="control has-icons-left">
-          <input class="input is-small" type="text" placeholder="Search">
+          <input class="input is-small" type="text" placeholder="Search" v-model="cari">
           <span class="icon is-small is-left">
             <i class="fa fa-search"></i>
           </span>
@@ -190,7 +190,8 @@ export default {
   data () {
     return {
       login : 'modal',
-      isLogin: false
+      isLogin: false,
+      cari: ''
     }
   },
   methods: {
@@ -205,6 +206,9 @@ export default {
     logout () {
       localStorage.clear()
       this.isLogin = false
+    },
+    tesmic () {
+      this.$router.push('search/'+this.cari.split(' ').join('_'))
     }
   },
   components: {
@@ -223,7 +227,10 @@ export default {
     }
   },
   watch: {
-    isLogin
+    isLogin: function () {
+      console.log('masas ngg bisa');
+      this.login = 'modal'
+    }
   }
 }
 </script>
