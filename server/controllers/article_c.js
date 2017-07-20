@@ -35,8 +35,8 @@ let getAllArticles = (req, res) => {
 
 
 let getOneArticles = (req, res) => {
-  console.log(req.params.Articles_id);
-  Articles.findById(req.params.Articles_id)
+  console.log(req.params.articles_id);
+  Articles.findById(req.params.articles_id)
     .populate('author')
     .populate('answers.author')
     .exec((err, resultArticles) => {
@@ -49,7 +49,7 @@ let getOneArticles = (req, res) => {
 }
 
 let editArticles = (req, res) => {
-  Articles.findByIdAndUpdate(req.params.Articles_id, req.body, {
+  Articles.findByIdAndUpdate(req.params.articles_id, req.body, {
       new: true
     },
     (err, new_Articles) => {
@@ -63,7 +63,7 @@ let editArticles = (req, res) => {
 
 let destroyArticles = (req, res) => {
   Articles.remove({
-    _id: req.params.Articles_id
+    _id: req.params.articles_id
   }, (err, old_Articles) => {
     if (err) {
       res.send(err);
@@ -73,11 +73,52 @@ let destroyArticles = (req, res) => {
   })
 }
 
+let getArticlesByAuthor = (req, res) => {
+  console.log(req.params.name);
+  Articles.find({})
+    .populate('author')
+    .populate('answers.author')
+    .exec((err, results) => {
+      if (err) {
+        res.send(err)
+      } else {
+        // console.log(results);
+        var filtered = results.filter(function limitnya(parent) {
+          return parent.author.name == req.params.name
+        })
+        console.log(filtered);
+        res.send(filtered)
+      }
+    })
+}
+
+let getArticlesByCategory = (req, res) => {
+  console.log(req.params.category);
+  Articles.find({})
+    .populate('author')
+    .populate('answers.author')
+    .exec((err, results) => {
+      if (err) {
+        res.send(err)
+      } else {
+        var limitnya = function (parent) {
+          return parent.category.includes(req.params.category) == true
+        }
+        // console.log(results[0].category.includes(req.params.category));
+        var filtered = results.filter(limitnya)
+        console.log(filtered);
+        res.send(filtered)
+      }
+    })
+}
+
 
 module.exports = {
   getOneArticles,
   postArticles,
   getAllArticles,
   editArticles,
-  destroyArticles
+  destroyArticles,
+  getArticlesByAuthor,
+  getArticlesByCategory
 };
