@@ -2,8 +2,7 @@ const express      = require('express'),
       bodyParser   = require('body-parser'),
       mongoose     = require('mongoose')
 
-      // index        = require('./routes/index'),
-      main        = require('./routes/main'),
+      articles        = require('./routes/article'),
       users    = require('./routes/users')
 
       app          = express();
@@ -16,7 +15,7 @@ app.use(bodyParser.urlencoded({extended:true}))
 
 
 // app.use('/', index)
-app.use('/', main)
+app.use('/articles', articles)
 app.use('/users', users)
 
 app.listen(3000, () => {
