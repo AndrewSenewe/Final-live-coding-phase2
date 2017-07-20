@@ -13,3 +13,9 @@ new Vue({
   template: '<App/>',
   components: { App }
 })
+
+const store = new Vuex.Store({
+  state: {
+    isLogin: false
+  }
+})

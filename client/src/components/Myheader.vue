@@ -211,6 +211,7 @@ export default {
     Login
   },
   created () {
+    this.login = 'modal'
     if (localStorage.getItem('token') !== null) {
       this.isLogin = true
     }
