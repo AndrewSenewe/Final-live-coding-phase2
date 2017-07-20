@@ -8,6 +8,8 @@ router.post('/', conn.postArticles);
 // get all articles
 router.get('/', conn.getAllArticles);
 
+// get limited articles
+router.get('/limited', conn.getLimitedArticles);
 
 //get one articles
 router.get('/:articles_id', conn.getOneArticles);

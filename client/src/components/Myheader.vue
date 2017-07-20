@@ -211,9 +211,15 @@ export default {
     Login
   },
   created () {
+    // console.log(this.tesLogin);
     this.login = 'modal'
     if (localStorage.getItem('token') !== null) {
       this.isLogin = true
+    }
+  },
+  computed: {
+    tesLogin () {
+      return this.$store.state.isLogin
     }
   }
 }

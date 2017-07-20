@@ -33,6 +33,19 @@ let getAllArticles = (req, res) => {
     })
 }
 
+let getLimitedArticles = (req, res) => {
+  Articles.find({})
+    .limit(3)
+    .populate('author')
+    .populate('answers.author')
+    .exec((err, results) => {
+      if (err) {
+        res.send(err)
+      } else {
+        res.send(results)
+      }
+    })
+}
 
 let getOneArticles = (req, res) => {
   console.log(req.params.articles_id);
@@ -120,5 +133,6 @@ module.exports = {
   editArticles,
   destroyArticles,
   getArticlesByAuthor,
-  getArticlesByCategory
+  getArticlesByCategory,
+  getLimitedArticles
 };
