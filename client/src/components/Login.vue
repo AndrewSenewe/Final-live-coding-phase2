@@ -62,7 +62,7 @@ export default {
           toRegister.username = ''
           toRegister.password = ''
           console.log('masuk', response.data);
-          // this.$router.push('/')
+          this.$router.push('/lists')
         }
       })
       .catch(err => {

@@ -1,11 +1,11 @@
 <template lang="html">
   <div class="nologin">
-    <h1>NOLOGIN</h1>
+    <h1>Latest Article</h1>
     <p v-for="pop in populations">{{pop.title}}</p>
 
     <div class="">
-      <router-link :to="{ name: '', params: {} }">
-        <button class="button is-primary">more questions</button>
+      <router-link :to="{ name: 'Listings', params: {} }">
+        more
       </router-link>
     </div>
   </div>

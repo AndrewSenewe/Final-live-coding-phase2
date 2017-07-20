@@ -221,6 +221,9 @@ export default {
     tesLogin () {
       return this.$store.state.isLogin
     }
+  },
+  watch: {
+    isLogin
   }
 }
 </script>
